@@ -16,17 +16,16 @@ class _ContactListScreenState extends State<ContactListScreen> {
     super.initState();
     _usersFuture = _loadUsers();
   }
-
-  Future<List<dynamic>> _loadUsers() async {
-    try {
-      final String response = await rootBundle.loadString('assets/users.json');
-      final data = json.decode(response) as Map<String, dynamic>;
-      return data['users'] as List<dynamic>;
-    } catch (e) {
-      print('Error loading users: $e');
-      return []; // Return an empty list in case of error
-    }
+Future<List<dynamic>> _loadUsers() async {
+  try {
+    final String response = await rootBundle.loadString('assets/users.json');
+    final List<dynamic> data = json.decode(response) as List<dynamic>; // Decode as List
+    return data; 
+  } catch (e) {
+    print('Error loading users: $e');
+    return []; 
   }
+}
 
   @override
   Widget build(BuildContext context) {
