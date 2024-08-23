@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'loginScreen.dart'; // Import de la page de connexion
+import 'package:yoser/screens/contact_list_screen.dart';
+import 'screens/loginScreen.dart'; // Import de la page de connexion
 
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(), // Démarrer avec la page de connexion
+      home: ContactListScreen(), // Démarrer avec la page de connexion
     );
   }
 }
