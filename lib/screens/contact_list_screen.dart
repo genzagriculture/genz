@@ -19,7 +19,7 @@ class _ContactListScreenState extends State<ContactListScreen> {
 Future<List<dynamic>> _loadUsers() async {
   try {
     final String response = await rootBundle.loadString('assets/users.json');
-    final List<dynamic> data = json.decode(response) as List<dynamic>; // Decode as List
+    final List<dynamic> data = json.decode(response) as List<dynamic>; 
     return data; 
   } catch (e) {
     print('Error loading users: $e');

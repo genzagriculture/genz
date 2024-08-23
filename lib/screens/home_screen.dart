@@ -56,7 +56,6 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: GestureDetector(
                           onTap: () {
-                            // Navigate to the All Categories page
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => const CategoriesScreen()),
