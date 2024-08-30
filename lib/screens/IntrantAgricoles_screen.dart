@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/base_screen.dart';
 
-class ProductListScreen extends StatefulWidget {
+class IntrantListScreen extends StatefulWidget {
   @override
-  _ProductListScreenState createState() => _ProductListScreenState();
+  _IntrantListScreenState createState() => _IntrantListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _IntrantListScreenState extends State<IntrantListScreen> {
   late Future<List<dynamic>> _productsFuture;
   List<dynamic> _allProducts = [];
   List<dynamic> _filteredProducts = [];
