@@ -25,107 +25,160 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sign Up'),
+        backgroundColor: Colors.green, // Couleur de l'AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              // Le texte centré en vert
-              Center(
-                child: Text(
-                  'WELCOME TO OUR APPLICATION',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.green, // Texte en vert
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: SingleChildScrollView(
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0), // Bordure arrondie
+            ),
+            elevation: 8.0, // Ombre pour donner de la profondeur
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min, // Ajuste la hauteur au contenu
+                  children: <Widget>[
+                    Center(
+                      child: Text(
+                        'WELCOME TO OUR APPLICATION',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green, // Texte en vert
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: 30), // Espacement entre les éléments
+
+                    // Champ Name avec bordure arrondie
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[100], // Couleur de fond
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your name';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _name = value!;
+                      },
+                    ),
+                    SizedBox(height: 15), // Espacement entre les champs
+
+                    // Champ Email avec bordure arrondie
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[100], // Couleur de fond
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _email = value!;
+                      },
+                    ),
+                    SizedBox(height: 15),
+
+                    // Champ Password avec bordure arrondie
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[100], // Couleur de fond
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _password = value!;
+                      },
+                    ),
+                    SizedBox(height: 15),
+
+                    // Champ Confirm Password avec bordure arrondie
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Confirm Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[100], // Couleur de fond
+                      ),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please confirm your password';
+                        } else if (value != _password) {
+                          return 'Passwords do not match';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20),
+
+                    // Bouton d'inscription stylé
+                    ElevatedButton(
+                      onPressed: _signUp,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
+                        child: Text(
+                          'Create',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green, // Couleur du bouton
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie
+                        ),
+                        elevation: 5.0, // Ombre pour un effet de relief
+                      ),
+                    ),
+                    SizedBox(height: 20),
+
+                    // Bouton pour retourner à la page de connexion
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context); // Retour à l'écran de connexion
+                      },
+                      child: Text(
+                        'Already have an account? Login',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 30), // Espace entre le texte et le formulaire
-
-              // Champ Nom
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _name = value!;
-                },
-              ),
-              SizedBox(height: 10),
-
-              // Champ Email
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Email'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _email = value!;
-                },
-              ),
-              SizedBox(height: 10),
-
-              // Champ Password
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _password = value!;
-                },
-              ),
-              SizedBox(height: 10),
-
-              // Champ Confirm Password
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Confirm Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please confirm your password';
-                  } else if (value != _password) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-
-              // Bouton d'inscription
-              ElevatedButton(
-                onPressed: _signUp,
-                child: Text('Create'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green, // Couleur du bouton
-                ),
-              ),
-              SizedBox(height: 20),
-
-              // Bouton pour retourner à la page de connexion
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context); // Retour à l'écran de connexion
-                },
-                child: Text('Already have an account? Login'),
-              ),
-            ],
+            ),
           ),
         ),
       ),
