@@ -24,11 +24,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // AppBar vert
+        title: Text('Sign Up'),
+        backgroundColor: Colors.green, // Couleur de l'AppBar
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0), // Bordure arrondie
@@ -41,15 +42,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min, // Ajuste la hauteur au contenu
                   children: <Widget>[
-                    // Texte centré
-                    Text(
-                      'WELCOME TO OUR APPLICATION',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
+                    Center(
+                      child: Text(
+                        'WELCOME TO OUR APPLICATION',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green, // Texte en vert
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 30), // Espacement entre les éléments
 
@@ -166,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     // Bouton pour retourner à la page de connexion
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context); // Retour à l'écran de connexion
                       },
                       child: Text(
                         'Already have an account? Login',

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:yoser/screens/home_screen.dart';
 import 'package:yoser/screens/about_screen.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
+
 import 'package:yoser/screens/panier_screen.dart';
+
+
 
 class BaseScreen extends StatelessWidget {
   final int currentIndex;
@@ -43,12 +46,15 @@ class BaseScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ContactListScreen()),
               );
             }
+
             else if (index == 3) {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => PanierScreen()),
               );
             }
+
+
           }
         },
       ) : null,

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'screens/loginScreen.dart'; // Import de la page de connexion
+
+
+import 'screens/loginScreen.dart';
+import 'screens/categories_screen.dart'; // Import de la page de connexion
 
 
 void main() {
@@ -14,4 +19,6 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(), // Démarrer avec la page de connexion
     );
   }
+
 }
+

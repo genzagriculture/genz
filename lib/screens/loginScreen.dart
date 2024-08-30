@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart'; // Importez la page d'inscription
-import 'home_screen.dart'; // Importez la page d'accueil en tant qu'invité
+import 'home_screen.dart'; // Importez la page d'accueil
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,6 +17,10 @@ class _LoginScreenState extends State<LoginScreen> {
       _formKey.currentState!.save();
       // Effectuer l'opération de connexion ici
       print("Email: $_email, Password: $_password");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()), // Navigation vers HomeScreen
+      );
     }
   }
 
@@ -24,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
+        title: Text('Login'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -32,8 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(20.0), // Bordure arrondie pour la carte
+              borderRadius: BorderRadius.circular(20.0), // Bordure arrondie pour la carte
             ),
             elevation: 8.0, // Ombre pour donner un effet de profondeur
             child: Padding(
@@ -41,8 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisSize:
-                      MainAxisSize.min, // Ajuste la hauteur au contenu
+                  mainAxisSize: MainAxisSize.min, // Ajuste la hauteur au contenu
                   children: <Widget>[
                     // Ajout d'un texte centré en haut du formulaire
                     Text(
@@ -54,16 +56,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       textAlign: TextAlign.center, // Centrer le texte
                     ),
-                    SizedBox(
-                        height: 30), // Espace entre le texte et le formulaire
+                    SizedBox(height: 30), // Espace entre le texte et le formulaire
 
                     // Champ Email avec forme
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: 'Email',
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Bordure arrondie pour le champ
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie pour le champ
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -84,8 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         labelText: 'Password',
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Bordure arrondie pour le champ
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie pour le champ
                         ),
                       ),
                       obscureText: true,
@@ -103,20 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // Bouton de Connexion
                     ElevatedButton(
-                      onPressed: () {
-                        // Effectuer la navigation vers la page HomeScreen ici
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  HomeScreen()), // Navigation vers HomeScreen
-                        );
-                      },
+                      onPressed: _login,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green, // Bouton en vert
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Bordure arrondie pour le bouton
+                          borderRadius: BorderRadius.circular(10.0), // Bordure arrondie pour le bouton
                         ),
                         padding: EdgeInsets.symmetric(
                           horizontal: 50.0, // Largeur du bouton
@@ -138,10 +128,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text('Don\'t have an account? Sign Up'),
                     ),
-
-                    SizedBox(height: 20), // Espacement
-
-                    // Bouton pour naviguer sans compte
                   ],
                 ),
               ),
