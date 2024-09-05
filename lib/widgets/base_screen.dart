@@ -1,18 +1,16 @@
-import 'package:yoser/screens/contact_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:yoser/screens/contact_list_screen.dart';
 import 'package:yoser/screens/home_screen.dart';
 import 'package:yoser/screens/about_screen.dart';
-import '../widgets/custom_bottom_nav_bar.dart';
-
+import 'package:yoser/screens/personnalisation_screen.dart';
 import 'package:yoser/screens/panier_screen.dart';
-
-
+import 'package:yoser/widgets/custom_bottom_nav_bar.dart';
 
 class BaseScreen extends StatelessWidget {
   final int currentIndex;
   final Widget child;
-  final bool showBottomNavBar; 
-  final bool shouldNavigate; 
+  final bool showBottomNavBar;
+  final bool shouldNavigate;
 
   const BaseScreen({
     Key? key,
@@ -26,38 +24,43 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: child,
-      bottomNavigationBar: showBottomNavBar ? CustomBottomNavBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          if (shouldNavigate) {
-            if (index == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-              );
-            } else if (index == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => AboutScreen()),
-              );
-            }else if (index == 2) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ContactListScreen()),
-              );
-            }
-
-            else if (index == 3) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => PanierScreen()),
-              );
-            }
-
-
-          }
-        },
-      ) : null,
+      bottomNavigationBar: showBottomNavBar
+          ? CustomBottomNavBar(
+              currentIndex: currentIndex,
+              onTap: (index) {
+                if (shouldNavigate) {
+                  // Gérer la navigation en fonction de l'index de la barre de navigation
+                  switch (index) {
+                    case 0:
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      );
+                      break;
+                    case 1:
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutScreen()),
+                      );
+                      break;
+                    case 2:
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => ContactListScreen()),
+                      );
+                      break;
+                    case 3:
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => PanierScreen()),
+                      );
+                      break;
+                   
+                  }
+                }
+              },
+            )
+          : null,
     );
   }
 }

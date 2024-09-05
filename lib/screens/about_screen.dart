@@ -101,7 +101,7 @@ class AboutScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20), // Espacement entre les sections
+              SizedBox(height: 20) ,// Espacement entre les sections
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: Container(

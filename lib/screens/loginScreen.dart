@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _formKey.currentState!.save();
       // Effectuer l'opération de connexion ici
       print("Email: $_email, Password: $_password");
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()), // Navigation vers HomeScreen
       );
@@ -28,7 +28,19 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        
+        actions: [
+          IconButton(
+            icon: Icon(Icons.home), // Icône Home
+            onPressed: () {
+              // Action à effectuer lors du clic sur l'icône Home
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(
